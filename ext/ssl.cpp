@@ -205,6 +205,9 @@ SslContext_t::SslContext_t (bool is_server, const std::string &privkeyfile, cons
 	# endif
 	#endif
 
+	// allow downgrading to TLSv1
+	SSL_CTX_set_options (pCtx, SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION);
+
 	if (!(ssl_version & EM_PROTO_SSLv2))
 		SSL_CTX_set_options (pCtx, SSL_OP_NO_SSLv2);
 
